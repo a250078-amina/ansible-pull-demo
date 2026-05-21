@@ -1,9 +1,9 @@
-
+---
 - hosts: localhost
-  connection:local
-  become:false
+  connection: local
+  become: yes
 
-  task"
-  - name:Print Hello World
-    debug:
-      msg:"Hello World"
+  tasks:
+    - name: Print message
+      debug:
+        msg: "Ansible Pull Working Successfully"
