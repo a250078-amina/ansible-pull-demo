@@ -1,0 +1,24 @@
+---
+- hosts: localhost
+  connection: local
+  become: true
+
+  tasks:
+
+    - name: Install NodeJS and npm
+      apt:
+        name:
+          - nodejs
+          - npm
+        state: present
+        update_cache: yes
+
+    - name: Copy NodeJS app
+      copy:
+        src: app.js
+        dest: /home/devops/app.js
+        mode: '0644'
+
+    - name: Start NodeJS application
+      shell: |
+        nohup node /home/devops/app.js > /home/devops/node.log 2>&1 &
